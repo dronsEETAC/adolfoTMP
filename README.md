@@ -6,4 +6,9 @@ The main goal of this project was to develop a desktop application using Python 
   - Return To Launch maneuver for each drone from the main panel.
   - Secondarily it allows to pilot each drone from the app.
 
+**Demo**
+
+
+**Contribution and installation**
+
     
