@@ -22,8 +22,7 @@ Moreover there is also a video explaining how the code of the application works.
 
 In case you want to contribute to this project you will need to install Python 3.7. It is recommended to use Pycharm as your working environment as it provides lots of facilities for your coding. You will also need to install Mosquitto broker in order to get the Autopilot Service file working. This broker will be always run in localhome (port 1884) when simulating. Thus you will need to create a folder in your Mosquitto broker folder containing the following information:
 
-listener 1884
-allow_anonymous true
+listener 1884                                                                                                                                                                                                                                                     allow_anonymous true
 
 For more information visit the Drone Engineering Ecosystem GitHub, https://github.com/dronsEETAC/DroneEngineeringEcosystemDEE.
     
