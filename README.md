@@ -1,4 +1,4 @@
-**Multiple drone control in the Drone Engineering Ecosystem**
+**<h1>Multiple drone control in the Drone Engineering Ecosystem</h1>**
 
 The main goal of this project was to develop a desktop application using Python and CustomTkinter which makes possible to fly up to four drones at the same time inside the DroneLab in the EETAC (UPC) campus . This application allows the user to:
   - Display and movement tracking of up to four drones in the main panel.
