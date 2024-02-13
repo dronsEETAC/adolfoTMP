@@ -5,6 +5,7 @@ This is a project which has been made as a contribution to the collaborative pro
   - Configuration of the geofence and its parameters for each drone.
   - Return To Launch maneuver for each drone from the main panel.
   - Secondarily it allows to pilot each drone from the app.
+  - 
 
     ![tfgGithub](https://github.com/adolfosanmartin/adolfosanmartin-Multiple-Drone-Control-DEE/assets/159135459/ae946a58-3359-465f-88e9-b2ae0643d1c3)
     
