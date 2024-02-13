@@ -8,9 +8,9 @@ The main goal of this project was to develop a desktop application using Python 
 
     ![tfgGithub](https://github.com/adolfosanmartin/adolfosanmartin-Multiple-Drone-Control-DEE/assets/159135459/ae946a58-3359-465f-88e9-b2ae0643d1c3)
 
-**Demo**
+**<h1>Demo</h1>**
 
 
-**Contribution and installation**
+**<h1>Contribution and installation</h1>**
 
     
