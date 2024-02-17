@@ -102,6 +102,10 @@ class GeofenceDesignClass:
 
         global gcustomselected
 
+        ### aquí es donde se empezó a desarrollar la funcionalidad de guardar los diseños personalizados como predeterminados. 
+        ### la idea es que al darle al botón te guarda las listas de coordenadas que acabas de diseñar cada una en uno de los ficheros 
+        ### de texto. 
+        
         if self.Ndrones == "1":
             file1 = open('geof_coords_1.txt', 'w')
             file1.write(str(self.geof_design1[0]))
