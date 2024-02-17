@@ -12,11 +12,11 @@ This is a project which has been made as a contribution to the collaborative pro
 
 **<h1>Demo</h1>**
 
-In order to undersand how to to use this application a demonstration has been done in the following video: LINK.
+In order to undersand how to to use this application a demonstration has been done in the following video: https://www.youtube.com/watch?v=jW8FSXkJmNU.
 
 The demonstration consists of four drones being simulated from the Mission Planner simulator. Through this video you will see all the funcionalities of the application and which order you should follow to run it successfully.
 
-Moreover there is also a video explaining how the code of the application works. See the following link: LINK. 
+Moreover there is also a video explaining how the code of the application works. See the following link: https://www.youtube.com/watch?v=tSRDGou90WU. 
 
 
 **<h1>Contribution and installation</h1>**
