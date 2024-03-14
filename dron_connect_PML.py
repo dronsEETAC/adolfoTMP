@@ -49,6 +49,7 @@ def _send_telemetry_info(self, sending_topic):
                 'state': self.state,
                 'groundSpeed': self.groundSpeed
             }
+
             self.lock.acquire()
             self.client.publish(sending_topic + '/telemetryInfo', json.dumps(telemetry_info))
             # print ("estado", self.state)

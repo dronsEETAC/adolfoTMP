@@ -314,7 +314,7 @@ class ConfiguraciónyConexiónClass:
 
             self.conf_param = ctk.CTkToplevel(self.ConnectionFrame)
             self.conf_param.title("Configuración parámetros dron 1")
-            self.conf_param.geometry("1000x600")
+            self.conf_param.geometry("1000x800")
             self.conf_param.grab_set()
 
             self.conf_param_Frame = ctk.CTkFrame(self.conf_param)
@@ -438,6 +438,9 @@ class ConfiguraciónyConexiónClass:
             if FLTMODE6get1 == 9:
                 FLT_val = "LAND"
                 self.FLTMODE_param1= "LAND"
+            if FLTMODE6get1 == 0:
+                FLT_val = "None"
+                self.FLTMODE_param1 = "None"
 
             self.FLTMODE6 = ctk.CTkOptionMenu(self.conf_param_Frame,
                                                    values=[FLT_val, "RTL", "LAND"],

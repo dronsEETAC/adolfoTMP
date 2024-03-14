@@ -12,11 +12,11 @@ def _goDown(self, mode):
         mode_id)
     arm_msg = self.vehicle.recv_match(type='COMMAND_ACK', blocking=True, timeout=3)
     self.vehicle.motors_disarmed_wait()
-    self.state = "conectado"
+    self.state = "onHearth"
 
 
 def RTL(self):
-    self.state = 'retornando'
+    self.state = 'returning'
     y = threading.Thread(target=self._goDown, args=['RTL', ])
     y.start()
 
@@ -24,6 +24,6 @@ def RTL(self):
 
 
 def Land(self):
-    self.state = 'aterrizando'
+    self.state = 'landing'
     y = threading.Thread(target=self._goDown, args=['LAND', ])
     y.start()

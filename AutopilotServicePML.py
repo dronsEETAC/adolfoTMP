@@ -31,9 +31,10 @@ def process_message(message, client):
             else:
 
                 connection_string = "com3"
-
+            print ('voy a conectarme a ', connection_string)
             dron.connect(sending_topic, connection_string)
             print ('Connected to flight controller')
+            state = 'connected'
 
         else:
             print ('Autopilot already connected')
@@ -130,9 +131,9 @@ def AutopilotService (connection_mode, operation_mode, external_broker, username
 
 
 
-    internal_client = mqtt.Client("Autopilot_internal")
+    '''internal_client = mqtt.Client("Autopilot_internal")
     internal_client.on_message = on_internal_message
-    internal_client.connect("localhost", 1884)
+    internal_client.connect("localhost", 1884)'''
 
 
     external_client = mqtt.Client("Autopilot_external_Adolfo", transport="websockets")
@@ -179,8 +180,8 @@ def AutopilotService (connection_mode, operation_mode, external_broker, username
     print("Waiting....")
     external_client.subscribe("+/autopilotService/#", 2)
     external_client.subscribe("cameraService/+/#", 2)
-    internal_client.subscribe("+/autopilotService/#")
-    internal_client.loop_start()
+    '''  internal_client.subscribe("+/autopilotService/#")
+    internal_client.loop_start()'''
     if operation_mode == 'simulation':
         external_client.loop_forever()
     else:

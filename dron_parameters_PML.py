@@ -15,9 +15,29 @@ def _getParams(self, sending_topic):
     print ('vamos con los parametros')
     parameters = ['FENCE_ALT_MAX', 'FENCE_ENABLE', 'FENCE_MARGIN', 'FENCE_ACTION',
                   "RTL_ALT", "PILOT_SPEED_UP", 'FLTMODE6']
-    result = []
 
+    result = []
     for PARAM in parameters:
+        ready = False
+        while not ready:
+            self.vehicle.mav.param_request_read_send(
+                self.vehicle.target_system, self.vehicle.target_component,
+                PARAM.encode(encoding="utf-8"),
+                -1
+            )
+            message = self.vehicle.recv_match(type='PARAM_VALUE', blocking=True).to_dict()
+            if message['param_id'] == PARAM:
+                ready = True
+
+        result.append({
+            message['param_id']: message["param_value"]
+        })
+        print('ya tengo el siguiente')
+
+    print('ya están todos')
+    print (result)
+
+    ''' for PARAM in parameters:
         message = dialect.MAVLink_param_request_read_message(target_system=self.vehicle.target_system,
                                                          target_component=self.vehicle.target_component,
                                                          param_id=PARAM.encode(encoding="utf-8"), param_index=-1)
@@ -31,7 +51,7 @@ def _getParams(self, sending_topic):
                         PARAM: message["param_value"]
                     })
                     break
-
+    '''
 
     self.lock.acquire()
     self.client.publish(sending_topic + '/parameters', json.dumps(result))

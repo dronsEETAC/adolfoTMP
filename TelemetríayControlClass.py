@@ -29,9 +29,10 @@ class TelemetríayControlClass:
 
 
 
-    def BuildFrame(self, fatherFrame, client, altura1, altura2, altura3, altura4):
+    def BuildFrame(self, fatherFrame,BorrarRastro,client, altura1, altura2, altura3, altura4):
 
         # self.creado = False
+        self.BorrarRastro = BorrarRastro
 
         self.client = client
         self.altura_toff1 = altura1
@@ -635,6 +636,10 @@ class TelemetríayControlClass:
         global d2buttonClicked
         global d3buttonClicked
         global d4buttonClicked
+
+        self.BorrarRastro()
+
+
         if d1buttonClicked:
             self.client.publish("miMain/autopilotService/go", payload='Stop')
         if d2buttonClicked:

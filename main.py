@@ -93,6 +93,20 @@ class App(ctk.CTk):
 
     def on_message(self, client, userdata, message):
 
+        if message.topic == 'webApp/miMain/empiezaADibujar':
+            self.dibujar = True
+            self.borrar = False
+
+        if message.topic == 'webApp/miMain/paraDeDibujar':
+            self.dibujar = False
+
+        if message.topic == 'webApp/miMain/empiezaABorrar':
+            self.dibujar = False
+            self.borrar = True
+
+        if message.topic == 'webApp/miMain/paraDeBorrar':
+            self.borrar = False
+
         if message.topic == 'autopilotService/miMain/parameters':
             p1 = json.loads(message.payload)
             print ("paramList1", p1)
@@ -255,6 +269,11 @@ class App(ctk.CTk):
         Confcreado=False
         Maincreado=False
         cargarGeof = False
+
+        self.rastroRojo = []
+        self.dibujar = False
+        self.borrar = False
+
         self.cd1 = False
         self.cd2 = False
         self.cd3 = False
@@ -279,6 +298,8 @@ class App(ctk.CTk):
         self.client.subscribe("autopilotService2/miMain/parameters")
         self.client.subscribe("autopilotService3/miMain/parameters")
         self.client.subscribe("autopilotService4/miMain/parameters")
+
+        self.client.subscribe("webApp/#")
 
         self.Mainframe = ctk.CTkFrame(self.geometry("1100x640"), width=140, corner_radius=0)
         self.Mainframe.grid(row=0, column=0, rowspan=4, sticky="nsew")
@@ -328,9 +349,15 @@ class App(ctk.CTk):
         Maincreado=True
 
 
+    def BorrarRastro (self):
+
+        print('borro el rastro')
+        for oval in self.rastroRojo:
+            self.canvas.delete(oval)
+        self.rastroRojo = []
+
+
     def d1RTLbuttonClicked(self):
-
-
         self.client.publish("miMain/autopilotService/returnToLaunch")
     def d2RTLbuttonClicked(self):
         self.client.publish("miMain/autopilotService2/returnToLaunch")
@@ -764,7 +791,7 @@ class App(ctk.CTk):
             newWindow.grab_set()
 
             self.controlFrameObject = TelemetríayControlClass()
-            self.controlFrame= self.controlFrameObject.BuildFrame(newWindow, self.client, self.altura_toff1, self.altura_toff2, self.altura_toff3, self.altura_toff4)
+            self.controlFrame= self.controlFrameObject.BuildFrame(newWindow, self.BorrarRastro, self.client, self.altura_toff1, self.altura_toff2, self.altura_toff3, self.altura_toff4)
             self.controlFrame.pack(fill="both", expand="yes", padx=10, pady=10)
             # self.controlFrameObject.setTelemetryInfo(vel, alt)
             # print ("velocidad enviada", self.vel)
@@ -827,6 +854,16 @@ class App(ctk.CTk):
                 self.canvas.delete(self.drone1)
                 if state == "volando":
                     self.drone1 = self.canvas.create_oval(self.ov_x0, self.ov_y0, self.ov_x1, self.ov_y1, fill="red")
+                    if self.dibujar:
+                        self.rastroRojo.append(self.canvas.create_oval(self.ov_x0+10, self.ov_y0+10, self.ov_x1-10, self.ov_y1-10, outline = 'red', fill="red"))
+                    if self.borrar:
+                        for oval  in self.rastroRojo:
+                            x0, y0, x1, y1 = self.canvas.coords(oval)  # corresponding coordinates
+                            x =(x0 + x1) / 2
+                            y = (y0 + y1) / 2 # centers of objects
+                            if x > self.ov_x0 and x < self.ov_x1 and y > self.ov_y0 and y < self.ov_y1:
+                                self.canvas.delete(oval)
+                                self.rastroRojo.remove(oval)
                 else:
                     self.drone1 = self.canvas.create_oval(self.ov_x0, self.ov_y0, self.ov_x1, self.ov_y1, outline="red",
                                                           width=3)
